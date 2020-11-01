@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CoronaZP20T</string>
-    <string name="app_title">Infection online status</string>
-    <string name="app_vardas">Infection Online Status</string>
+    <string name="app_title">Jewelry Store</string>
+    <string name="app_vardas">Jewelry Store</string>
     <string name="login_username">Username:</string>
     <string name="login_password">Password:</string>
     <string name="login_checkbox">Remember me</string>
