@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -16,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginbutton, registerButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { // on create - veikasmas vyksta kai krauna langa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //visas kodas rasomas po sito komentaro
@@ -24,9 +27,28 @@ public class LoginActivity extends AppCompatActivity {
         Button loginbutton = (Button) findViewById(R.id.loginbutton);
         //cia istraukiamas elementas is vaizdo
 
-        final EditText usernametext = (EditText) findViewById(R.id.usernametext);
+        final EditText usernametext = (EditText) findViewById(R.id.usernametext); // final kai nekinta
         //edit text yra neapdirbtas formatas, todel isvedant reikia rasyti getText toString
         final EditText passwordtext = (EditText) findViewById(R.id.passwordtext);
+
+
+
+        final CheckBox rememberMe = (CheckBox) findViewById(R.id.rememberMe);
+        // konstruojamos vartotojo objektasp perduodant  context (langa, kuriame esam)
+        final User user = new User(LoginActivity.this);
+        // patikriname ar paskutini karta buvo pazymetas checkboxas
+        rememberMe.setChecked(user.isRememberedForLogin());
+
+        // aprasoma ''prisiminti mane'' checkboxo logika
+        if (rememberMe.isChecked()){   // jei checkboxas buvo pazymetas
+            usernametext.setText(user.getUsernameForLogin(), TextView.BufferType.EDITABLE); //settext uzpildysim user informacija, editable suteiksim galimybe redaguoti
+            passwordtext.setText(user.getPasswordForLogin(), TextView.BufferType.EDITABLE);
+        } else { // jeigu checkbox buvo nepazymetas - vartotojas nenorejo, kad info butu issaugota
+            usernametext.setText("", TextView.BufferType.EDITABLE);
+            passwordtext.setText("", TextView.BufferType.EDITABLE);
+        }
+
+
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +63,15 @@ public class LoginActivity extends AppCompatActivity {
                     passwordtext.requestFocus();
                 }
                 else {
+                    user.setUsernameForLogin(usernametext.getText().toString());
+                    user.setPasswordForLogin(passwordtext.getText().toString());
+                    if (rememberMe.isChecked()) {
+                        user.setRememberKeyForLogin(true);
+                    } else {
+                        user.setRememberKeyForLogin(false);
+                    }
+
+
                     Intent goToSearchActivity = new Intent(LoginActivity.this,
                             SearchActivity.class);
                     startActivity(goToSearchActivity);
