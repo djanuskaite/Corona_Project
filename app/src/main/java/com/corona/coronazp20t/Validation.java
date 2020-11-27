@@ -1,7 +1,7 @@
 package com.corona.coronazp20t;
 
-//cia susikuriam atskira klase (atskira failiuka), kad galetume ja iskviesti,
-// cia susirasysim koda, kaip ir C++ panasiai su funkcijomis darome
+//sukuriama atskira klase (atskira failiuka), kad galetume ja iskviesti,
+
 
 import android.content.Intent;
 
@@ -15,10 +15,10 @@ public class Validation {
 
     public static final String USERNAME_REGEX_PATTERN="^[a-zA-Z]{3,20}$";
 
-    public static boolean isValidUsername(String username){ //cia funkcija mes apsirasom, kaip void, tai cia boolean
+    public static boolean isValidUsername(String username){
         Pattern pattern=Pattern.compile(USERNAME_REGEX_PATTERN); //sukuriamas sablonas pagal musu apsirasytas taisykles (string kur susikurem virsuj)
         Matcher matcher=pattern.matcher(username); //pagal susikurta sablona palyginami vartotojo ivesti duomenys
-        return matcher.find(); //grazina true, jeigu atitinka sablona, false - priesingu atveju, kai neatitinka
+        return matcher.find(); //grazina true, jeigu atitinka sablona, false - priesingu atveju
     }
 
     public static final String PASSWORD_REGEX_PATTERN="^[a-zA-Z0-9.!@_]{5,20}$";

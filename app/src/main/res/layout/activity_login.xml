@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--encoding utf-8 yra koduote-->
-<!--Linear Layout - paprasciaucias linijinis isdestymas, sluoksniuotas pyragas:)
-reiskia, kad naujas elementas bus vienas po kitu, bet nepamirsti orientacijos pasirinkti-->
+
+<!--Linear Layout - linijinis isdestymas-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
     android:orientation="vertical"
     android:padding="10dp">
-    <!--reikia nusirodyti kokia bus musu lango orientacija, kad nepasisleptu elementai, nenusislinktu-->
 
     <TextView
         android:layout_width="match_parent"
@@ -26,7 +24,7 @@ reiskia, kad naujas elementas bus vienas po kitu, bet nepamirsti orientacijos pa
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:src="@drawable/logo" />
 
     <EditText
